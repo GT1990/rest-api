@@ -71,7 +71,7 @@ router.post(
     try {
       const user = req.currentUser; // user passed by authenticateUser middleware
       course = await Course.create({ userId: user.id, ...req.body }); // creates new course
-      res.status(201).redirect(`/api/courses/${course.id}`); // 201 Created
+      res.location("/").status(201); // 201 Created
     } catch (error) {
       if (
         error.name === "SequelizeValidationError" ||
