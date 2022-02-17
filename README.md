@@ -26,7 +26,8 @@ Rest API using Express
 ## USAGE
 
 1. Install dependencies using "npm install"
-2. Seed database using "npm run seed"
+2. Database already contains default seed data
+   - No need to run "npm run seed"
 3. Start application using "npm start"
 4. Use POSTMAN to test the Rest API
    - Use the "RESTAPI.postman_collection.json" file to run test cases in POSTMAN
