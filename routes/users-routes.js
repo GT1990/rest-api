@@ -29,7 +29,7 @@ router.post(
     let user;
     try {
       user = await User.create(req.body); // creates new user and saves to database
-      res.status(201).redirect("/"); // 201 Created
+      res.location("/").status(201).end(); // 201 Created
     } catch (error) {
       if (
         error.name === "SequelizeValidationError" ||

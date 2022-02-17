@@ -71,7 +71,7 @@ router.post(
     try {
       const user = req.currentUser; // user passed by authenticateUser middleware
       course = await Course.create({ userId: user.id, ...req.body }); // creates new course
-      res.location("/").status(201); // 201 Created
+      res.location("/").status(201).end(); // 201 Created
     } catch (error) {
       if (
         error.name === "SequelizeValidationError" ||
@@ -104,7 +104,7 @@ router.put(
           // only allows user that created the course to make updates
           await course.update(req.body); // updates course
           await course.save(); // saves course update
-          res.status(204).send(); // 204 No Content
+          res.status(204).end(); // 204 No Content
         } else {
           // user does not match course userId
           res.status(403).json({
@@ -151,7 +151,7 @@ router.delete(
         // (req.currentUser) user passed in by authenticateUser middleware
         // only allows user that created the course to delete it
         await course.destroy(); // deletes course
-        res.status(204).send(); // 204 No Content
+        res.status(204).end(); // 204 No Content
       } else {
         // user not matched access denied
         res.status(403).json({ message: "Access denied" }); // 403 Forbidden
