@@ -54,6 +54,10 @@ module.exports = (sequelize) => {
       password: {
         type: DataTypes.STRING,
         allowNull: false,
+        set(val) {
+          const hashedPassword = bcrypt.hashSync(val, 10);
+          this.setDataValue("password", bcrypt.hashedPassword);
+        },
         validate: {
           notNull: {
             msg: "A password is required",
@@ -67,42 +71,6 @@ module.exports = (sequelize) => {
           },
         },
       },
-      // confirmedPassword: {
-      //   type: DataTypes.VIRTUAL,
-      //   allowNull: false,
-      //   validate: {
-      //     notNull: {
-      //       msg: "A password confirmation is required",
-      //     },
-      //     notEmpty: {
-      //       msg: "A password confirmation is required",
-      //     },
-      //     len: {
-      //       ags: [8, 20],
-      //       msg: "Password must be between 8 and 20 characters",
-      //     },
-      //   },
-      // },
-      //   password: {
-      //     type: DataTypes.STRING,
-      //     allowNull: false,
-      //     set(val) {
-      //       if (val === this.confirmedPassword) {
-      //         const hashedPassword = bcrypt.hashSync(val, 10);
-      //         this.setDataValue("password", hashedPassword);
-      //       } else {
-      //         throw new Error("Password and confirmed password must match");
-      //       }
-      //     },
-      //     validate: {
-      //       notNull: {
-      //         msg: "Passwords must match",
-      //       },
-      //       notEmpty: {
-      //         msg: "A password is required",
-      //       },
-      //     },
-      //   },
     },
     { sequelize }
   );
