@@ -32,7 +32,7 @@ Rest API using Express
    - Use the "RESTAPI.postman_collection.json" file to run test cases in POSTMAN
 5. Use localhost port 5000
 6. Below under routes are descriptions of how each route and method work
-   - [Routes Link](##routes)
+   - [ROUTES link](#routes)
 
 ## EXAMPLE
 
